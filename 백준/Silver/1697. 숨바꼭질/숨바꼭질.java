@@ -1,3 +1,4 @@
+
 import java.io.*;
 import java.util.*;
 
@@ -12,6 +13,7 @@ public class Main {
         int N = Integer.parseInt(st.nextToken());   // 수빈 위치
         int K = Integer.parseInt(st.nextToken());   // 동생 위치
 
+        // 초반 위치가 같을 경우 예외 처리
         if (N == K) {
             System.out.println(0);
             return;
@@ -23,7 +25,7 @@ public class Main {
     public static void BFS(int N, int K) {
         Deque<Integer> queue = new ArrayDeque<>();
         queue.offer(N);
-        visited[N] = 1;
+        visited[N] = 0;
 
 
         while (!queue.isEmpty()) {
@@ -44,12 +46,12 @@ public class Main {
                 // next가 범위를 벗어나지 않고 방문하지 않은 경우 처리
                 if (next >= 0 && next <= 100000 && visited[next] == 0) {
                     if (next == K) {
-                        System.out.println(visited[cur]);
+                        System.out.println(visited[cur] + 1);
                         return;
                     }
 
                     queue.offer(next);
-                    visited[next] = visited[cur] + 1; 
+                    visited[next] = visited[cur] + 1;
                 }
             }
 
